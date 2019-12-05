@@ -1,0 +1,37 @@
+version: "3.4"
+services:
+  influxdb:
+    image: influxdb
+    ports:
+     - "8083:8083"
+    networks:
+      - iot
+      
+  mongodb:
+    image: mongo
+    ports:
+     - "27017:27017"
+    networks:
+      - iot
+
+  rabbitmq:
+    image: rabbitmq:management
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    networks:
+      - iot
+  
+  mqtt:
+    build: 
+      context: mqtt
+      dockerfile: Dockerfile
+    ports:
+      - "1883:1883"
+      - "15673:15672"
+      - "5673:5672"
+    networks:
+      - iot
+
+networks:
+    iot:
