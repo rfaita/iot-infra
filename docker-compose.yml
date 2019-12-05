@@ -1,0 +1,58 @@
+version: "3.4"
+services:
+  influxdb:
+    image: influxdb
+    networks:
+      - iot
+      
+  mongodb:
+    image: mongo
+    networks:
+      - iot
+
+  rabbitmq:
+    image: rabbitmq:management
+    networks:
+      - iot
+  
+  mqtt:
+    build: 
+      context: mqtt
+      dockerfile: Dockerfile
+    ports:
+      - "1883:1883"
+      - "15672:15672"
+    networks:
+      - iot
+
+  
+  edge-service:
+    build: 
+      context: ../iot-edge
+      dockerfile: src/main/docker/Dockerfile
+      args:
+        JAR_FILE: target/app.jar
+        UTIL_DIR: src/main/docker/
+  
+    environment:
+      - WAIT_FOR_IT=mongodb:27017 rabbitmq:5672 mqtt:5672
+      - JAVA_OPTS=-Xmx256m -Xms128m -Dspring.profiles.active=docker-compose
+    networks:
+      - iot
+  
+  tsp-service:
+    build: 
+      context: ../iot-tsp
+      dockerfile: src/main/docker/Dockerfile
+      args:
+        JAR_FILE: target/app.jar
+        UTIL_DIR: src/main/docker/
+  
+    environment:
+      - WAIT_FOR_IT=influxdb:8086 rabbitmq:5672
+      - JAVA_OPTS=-Xmx256m -Xms128m -Dspring.profiles.active=docker-compose
+    networks:
+      - iot 
+
+networks:
+    iot:
