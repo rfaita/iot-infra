@@ -28,8 +28,8 @@ services:
       - "1883:1883"
       - "15672:15672"
     environment:
-      - "RABBITMQ_DEFAULT_USER=rfaita"
-      - "RABBITMQ_DEFAULT_PASS=<CHANGEIT>" 
+      - "RABBITMQ_DEFAULT_USER=<CHANGEIT_USER>"
+      - "RABBITMQ_DEFAULT_PASS=<CHANGEIT_PASS>" 
     networks:
       - iot
 
