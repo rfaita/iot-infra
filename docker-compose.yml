@@ -60,6 +60,23 @@ services:
       - WAIT_FOR_IT=influxdb:8086 rabbitmq:5672
       - JAVA_OPTS=-Xmx256m -Xms128m -Dspring.profiles.active=docker-compose
     networks:
+      - iot
+
+  tsa-service:
+    build: 
+      context: ../iot-tsa
+      dockerfile: src/main/docker/Dockerfile
+      args:
+        JAR_FILE: target/app.jar
+        UTIL_DIR: src/main/docker/
+    
+    ports:
+      - "80:9090"
+  
+    environment:
+      - WAIT_FOR_IT=influxdb:8086
+      - JAVA_OPTS=-Xmx256m -Xms128m -Dspring.profiles.active=docker-compose
+    networks:
       - iot 
 
 networks:
