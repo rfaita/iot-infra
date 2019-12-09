@@ -16,12 +16,8 @@ git clone https://github.com/rfaita/iot-infra.git
 
 echo "Replaces"
 
-sed -i 's/<CHANGEIT_USER>/$1/g' iot-intra/docker-compose.yml
-sed -i 's/<CHANGEIT_PASS>/$2/g' iot-intra/docker-compose.yml
-
-
-sed -i 's/<CHANGEIT_USER>/$1/g' iot-edge/src/main/resources/application.yml
-sed -i 's/<CHANGEIT_PASS>/$2/g' iot-edge/src/main/resources/application.yml
+find . -iname *yml | xargs sed -i "s/<CHANGEIT_USER>/$1/g"
+find . -iname *yml | xargs sed -i "s/<CHANGEIT_PASS>/$2/g"
 
 echo "Compile Repos"
 
