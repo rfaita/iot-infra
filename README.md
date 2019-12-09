@@ -2,7 +2,7 @@
 
 ## Big Picture
 
-![alt BigPicture](iot.png)
+![alt BigPicture](images/iot.png)
 
 # How to Run System
 
