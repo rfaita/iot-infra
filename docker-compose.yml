@@ -2,8 +2,13 @@ version: "3.4"
 services:
   influxdb:
     image: influxdb
+    volumes:
+    # Data persistency
+    # sudo mkdir -p /srv/docker/influxdb/data
+    - /srv/docker/influxdb/data:/var/lib/influxdb
     networks:
       - iot
+      
       
   mongodb:
     image: mongo
