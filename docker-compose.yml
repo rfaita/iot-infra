@@ -22,6 +22,9 @@ services:
     ports:
       - "1883:1883"
       - "15672:15672"
+    environment:
+      - RABBITMQ_DEFAULT_USER: "rfaita"
+      - RABBITMQ_DEFAULT_PASS: "<CHANGEIT>" 
     networks:
       - iot
 
