@@ -1,0 +1,14 @@
+#!/bin/bash
+
+echo "Cleaning development dir and remake it"
+
+rm -rf ~/iot-dev
+mkdir ~/iot-dev
+cd ~/iot-dev
+
+echo "Cloning repos"
+
+git clone https://github.com/rfaita/iot-tsa.git
+git clone https://github.com/rfaita/iot-tsp.git
+git clone https://github.com/rfaita/iot-edge.git
+git clone https://github.com/rfaita/iot-infra.git
