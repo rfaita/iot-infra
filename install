@@ -1,5 +1,19 @@
 #!/bin/bash
 
+programname=$0
+
+function usage {
+    echo "usage: $programname [-u mqtt_admin_user] [-P mqtt_admin_pass] [-PC mqtt_user_pass]"
+    echo "  -u mqtt_admin_user   admin user for mqtt broker"
+    echo "  -P mqtt_admin_pass   pass for admin user for mqtt broker"
+    echo "  -PC mqtt_user_pass   pass for writer user for mqtt broker"
+    exit 1
+}
+
+if [ $# != 6 ]; then
+    usage
+fi
+
 echo "Cleaning install dir and remake it"
 
 rm -rf ~/iot-install
@@ -16,8 +30,9 @@ git clone https://github.com/rfaita/iot-infra.git
 
 echo "Replaces"
 
-find . -iname *yml | xargs sed -i "s/<CHANGEIT_USER>/$1/g"
-find . -iname *yml | xargs sed -i "s/<CHANGEIT_PASS>/$2/g"
+find . -iname *yml | xargs sed -i "s/<CHANGEIT_USER>/$2/g"
+find . -iname *yml | xargs sed -i "s/<CHANGEIT_PASS>/$4/g"
+find . -iname Dockerfile | xargs sed -i "s/<CHANGEIT_PASS>/$6/g"
 
 echo "Compile Repos"
 
