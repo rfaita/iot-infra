@@ -32,7 +32,7 @@ echo "Replaces"
 
 find . -iname *yml | xargs sed -i "s/<CHANGEIT_USER>/$2/g"
 find . -iname *yml | xargs sed -i "s/<CHANGEIT_PASS>/$4/g"
-find . -iname Dockerfile | xargs sed -i "s/<CHANGEIT_PASS>/$6/g"
+find . -iname Dockerfile | xargs sed -i "s/DEFAULT_MQTT_SENDER_PASS/$6/g"
 
 echo "Compile Repos"
 
