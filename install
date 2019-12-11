@@ -25,6 +25,7 @@ echo "Cloning repos"
 git clone https://github.com/rfaita/iot-tsa.git
 git clone https://github.com/rfaita/iot-tsp.git
 git clone https://github.com/rfaita/iot-edge.git
+git clone https://github.com/rfaita/iot-asset.git
 git clone https://github.com/rfaita/iot-infra.git
 
 
