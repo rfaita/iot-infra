@@ -33,7 +33,32 @@ services:
     networks:
       - iot
 
-  
+  postgres-keycloak-service:
+    image: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=keycloak
+      - POSTGRES_USER=keycloak
+      - POSTGRES_PASSWORD=password
+    networks:
+      - iot
+
+  keycloak-service:
+    image: jboss/keycloak
+    environment:
+      - DB_VENDOR=POSTGRES
+      - DB_ADDR=postgres-keycloak-service
+      - DB_DATABASE=keycloak
+      - DB_USER=keycloak
+      - DB_SCHEMA=public
+      - DB_PASSWORD=password
+      - KEYCLOAK_USER=admin
+      - KEYCLOAK_PASSWORD=admin
+      - PROXY_ADDRESS_FORWARDING=true
+    networks:
+      - iot
+
   edge-service:
     build: 
       context: ../iot-edge
@@ -69,10 +94,6 @@ services:
       args:
         JAR_FILE: target/app.jar
         UTIL_DIR: src/main/docker/
-    
-    ports:
-      - "80:9090"
-  
     environment:
       - WAIT_FOR_IT=influxdb:8086
       - JAVA_OPTS=-Xmx256m -Xms128m -Dspring.profiles.active=docker-compose
@@ -86,15 +107,30 @@ services:
       args:
         JAR_FILE: target/app.jar
         UTIL_DIR: src/main/docker/
-    
-    ports:
-      - "81:9091"
-  
     environment:
       - WAIT_FOR_IT=mongo:27017
+      - JAVA_OPTS=-Xmx256m -Xms128m -Dspring.profiles.active=docker-compose
+    networks:
+      - iot
+
+  gtw-service:
+    build: 
+      context: ../iot-gtw
+      dockerfile: src/main/docker/Dockerfile
+      args:
+        JAR_FILE: target/app.jar
+        UTIL_DIR: src/main/docker/
+    ports:
+      - "80:9081"
+    environment:
+       - WAIT_FOR_IT=keycloak-service:8080
       - JAVA_OPTS=-Xmx256m -Xms128m -Dspring.profiles.active=docker-compose
     networks:
       - iot 
 
 networks:
     iot:
+
+volumes:
+  postgres_data:
+      driver: local

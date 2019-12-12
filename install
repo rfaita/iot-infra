@@ -3,10 +3,11 @@
 programname=$0
 
 function usage {
-    echo "usage: $programname [-u mqtt_admin_user] [-P mqtt_admin_pass] [-PC mqtt_user_pass]"
-    echo "  -u mqtt_admin_user   admin user for mqtt broker"
-    echo "  -P mqtt_admin_pass   pass for admin user for mqtt broker"
-    echo "  -PC mqtt_user_pass   pass for writer user for mqtt broker"
+    echo "usage: $programname [-u mqtt_admin_user] [-P mqtt_admin_pass] [-PC mqtt_user_pass] [-PK keycloak_admin_pass]"
+    echo "  -u mqtt_admin_user      admin user for mqtt broker"
+    echo "  -P mqtt_admin_pass      pass for admin user for mqtt broker"
+    echo "  -PC mqtt_user_pass      pass for writer user for mqtt broker"
+    echo "  -PK keycloak_admin_pass pass keycloak admin user"
     exit 1
 }
 
@@ -26,6 +27,7 @@ git clone https://github.com/rfaita/iot-tsa.git
 git clone https://github.com/rfaita/iot-tsp.git
 git clone https://github.com/rfaita/iot-edge.git
 git clone https://github.com/rfaita/iot-asset.git
+git clone https://github.com/rfaita/iot-gtw.git
 git clone https://github.com/rfaita/iot-infra.git
 
 
@@ -33,6 +35,7 @@ echo "Replaces"
 
 find . -iname *yml | xargs sed -i "s/<CHANGEIT_USER>/$2/g"
 find . -iname *yml | xargs sed -i "s/<CHANGEIT_PASS>/$4/g"
+find . -iname *yml | xargs sed -i "s/<CHANGEIT_KEYCLOAK_PASS>/$8/g"
 find . -iname Dockerfile | xargs sed -i "s/DEFAULT_MQTT_SENDER_PASS/$6/g"
 
 echo "Compile Repos"
