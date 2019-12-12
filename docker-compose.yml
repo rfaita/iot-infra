@@ -45,7 +45,9 @@ services:
       - iot
 
   keycloak-service:
-    image: jboss/keycloak
+    build: 
+      context: keycloak
+      dockerfile: Dockerfile
     environment:
       - DB_VENDOR=POSTGRES
       - DB_ADDR=postgres-keycloak-service
