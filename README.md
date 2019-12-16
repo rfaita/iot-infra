@@ -55,27 +55,22 @@ This service is responsible for maintain the Assets of system(Sensors, cars, iot
 
 ## Reporting
 
+Reporting will be the component responsible to show / generate information and send notification about the assets. The component have two main service:
 
-## Times Series Aggregation Service
+### Time series aggregation service
 
-This service is responsible for query the data sent to **Edge Service** and processed by **Time Series Persistent Service**, the API implementation of the service is very customizable and main endpoint is:
+This service is responsible for query the data of the assets, the service can return data in the following formats:
+ - **raw data**: the representation of raw data sent from the iot devices
+ - **aggregated data**: the data will be returned with a criteria of aggregation(seconds, hours, days, months)
 
-### GET /sensorData/{tenantId}/{sensorId}
-
-The additional parameters are:
+The following filters will be provided by API:
 
  - from: start date to query the timeseries, format MUST be Zulu Time or using the keyword **now()**
  - to: end date to query the timeseries, format MUST be Zulu Time or using the keyword **now()** 
- - selectCriteria: criteria select to query, group functions can be used(mean, man, min, etc)
- - intervalValue: group by interval value
- - intervalUnit: group by interval unit, must be S,H,D,M
+ - selectCriteria: criteria select to query, aggregation functions can be used(mean, man, min, etc)
+ - intervalValue: group by interval value, for aggregation results
+ - intervalUnit: group by interval unit, for aggregation results
  
-
-
-## Times Series Persistent Service
-
-This service is responsible for the persistence of the incoming data from **Edge Service**
-
 
 ## Rule Service
 
