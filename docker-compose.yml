@@ -132,7 +132,7 @@ services:
         JAR_FILE: target/app.jar
         UTIL_DIR: src/main/docker/
     environment:
-      - WAIT_FOR_IT=keycloak-service:8080
+      - WAIT_FOR_IT=keycloak-service:8080 nginx-service:80
       - JAVA_OPTS=-Xmx256m -Xms128m -Dspring.profiles.active=docker-compose
     networks:
       - iot 

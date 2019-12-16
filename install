@@ -11,7 +11,7 @@ function usage {
     exit 1
 }
 
-if [ $# != 6 ]; then
+if [ $# != 8 ]; then
     usage
 fi
 
