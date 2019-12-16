@@ -119,7 +119,7 @@ services:
         UTIL_DIR: src/main/docker/
         HTTP_PROXY: http://10.144.1.10:8080/
     environment:
-      - WAIT_FOR_IT=mongo:27017
+      - WAIT_FOR_IT=mongodb:27017
       - JAVA_OPTS=-Xmx256m -Xms128m -Dspring.profiles.active=docker-compose
     networks:
       - iot
