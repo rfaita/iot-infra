@@ -43,6 +43,8 @@ echo "Compile Repos"
 cd iot-tsa && mvn clean install
 cd ../iot-tsp && mvn clean install
 cd ../iot-edge && mvn clean install
+cd ../iot-asset && mvn clean install
+cd ../iot-gtw && mvn clean install
 
 cd ../iot-infra
 
