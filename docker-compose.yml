@@ -75,7 +75,7 @@ services:
       args:
         JAR_FILE: target/app.jar
         UTIL_DIR: src/main/docker/
-  
+        HTTP_PROXY: http://10.144.1.10:8080/
     environment:
       - WAIT_FOR_IT=mongodb:27017 rabbitmq:5672 mqtt:5672
       - JAVA_OPTS=-Xmx256m -Xms128m -Dspring.profiles.active=docker-compose
@@ -89,7 +89,7 @@ services:
       args:
         JAR_FILE: target/app.jar
         UTIL_DIR: src/main/docker/
-  
+        HTTP_PROXY: http://10.144.1.10:8080/
     environment:
       - WAIT_FOR_IT=influxdb:8086 rabbitmq:5672
       - JAVA_OPTS=-Xmx256m -Xms128m -Dspring.profiles.active=docker-compose
@@ -103,6 +103,7 @@ services:
       args:
         JAR_FILE: target/app.jar
         UTIL_DIR: src/main/docker/
+        HTTP_PROXY: http://10.144.1.10:8080/
     environment:
       - WAIT_FOR_IT=influxdb:8086
       - JAVA_OPTS=-Xmx256m -Xms128m -Dspring.profiles.active=docker-compose
@@ -116,6 +117,7 @@ services:
       args:
         JAR_FILE: target/app.jar
         UTIL_DIR: src/main/docker/
+        HTTP_PROXY: http://10.144.1.10:8080/
     environment:
       - WAIT_FOR_IT=mongo:27017
       - JAVA_OPTS=-Xmx256m -Xms128m -Dspring.profiles.active=docker-compose
@@ -129,6 +131,7 @@ services:
       args:
         JAR_FILE: target/app.jar
         UTIL_DIR: src/main/docker/
+        HTTP_PROXY: http://10.144.1.10:8080/
     environment:
       - WAIT_FOR_IT=keycloak-service:8080 nginx-service:80
       - JAVA_OPTS=-Xmx256m -Xms128m -Dspring.profiles.active=docker-compose
