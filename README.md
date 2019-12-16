@@ -1,15 +1,20 @@
-# Iot-product
+# One Architecture to a IoT Ingestion / Report System
+
+The following picture represent the main architecture of the system
 
 ## Big Picture
 
 ![alt BigPicture](images/iot.png)
 
-# Service
+The architecture basiclly have two main areas:
 
-## Edge Service
+## Ingestion
 
-This service is responsible for recieve the information incoming across the devices, the service use the
-**mqtt** protocol to recive messages, the format of the message MUST be JSON, with the following minimum payload:
+The ingestion is responsible to consume the data sent from assets(sensor, cars, iot devices in general). He use the mqtt protocol to receive data and is divided in three services:
+
+### Edge / Ingestion service
+
+The main responsability of this service is consume the data send to **mqtt broker** and verify whether the information is valid to send it to the **Time series persistent service**. The service use a **mqtt broker**, the incoming message will be sent in JSON, with the following example of payload:
 
 ```json
 {
@@ -23,15 +28,33 @@ This service is responsible for recieve the information incoming across the devi
 }
 ```
 
-#### Important
- - id, tenantId, and tokenId: must be used the supplied by **Asset Service**
- - timestamp: in seconds
- - custom fields: you can send any data to server, the edge service will intepretate it
+The mandatory fields are:
+ - id: is the identifier of the asset
+ - tenantId: is the identifier of the owner of asset
+ - token: is the secret key, which one validate or invalidate the message
+ - timestamp: the moment when the data is collected
+ - custom fields: this fields represent the data about asset, in case of this could be: speed, acceleration, voltage of battery, instant consumption, etc
 
-## Asset Service
+### Time series persistent service
 
-This service is responsible for maintain the Assets of system(Sensor), each sensor MUST have one Asset, the asset have
-the token, id and tenant to be possible to send data to **Edge Service**
+This service is reponsible about the persistance of information of incoming data from **Edge / Ingestion service**, this data will be persited in one database, the choosen database for architecture was **InfluxDB**.
+
+InfluxDB is an open-source time series database (TSDB). It is written in Go and optimized for fast, high-availability storage and retrieval of time series data in fields such as operations monitoring, application metrics, Internet of Things sensor data, and real-time analytics.
+
+The main Influxdb concepts are:
+
+1. Measurement: A measurement is loosely equivalent to the concept of a table in relational databases. Measurement is inside which a data is stored and a database can have multiple measurements. A measurement primarily consists of 3 types of columns Time, Tags and Fields
+2. Time: A time is nothing but a column tracking timestamp to perform time series operations in a better way. The default is the Influxdb time which is in nanoseconds, however, it can be replaced with event time.
+3. Tags: A tag is similar to an indexed column in a relational database. An important point to remember is that relational operations like WHERE, GROUP BY etc, can be performed on a column only if it is marked as a Tag
+4. Fields: Fields are the columns on which mathematical operations such as sum, mean, non-negative derivative etc can be performed. However, in recent versions string values can also be stored as a field.
+5. Series: A series is the most important concept of Influxdb. A series is a combination of tags, measurement, and retention policy (default of Influxdb). An Influxdb database performance is highly dependent on the number of unique series it contains, which in turn is the cardinality of tags x no. of measurement x retention policy
+
+### Asset Service
+
+This service is responsible for maintain the Assets of system(Sensors, cars, iot devices), each asset is composed of the token, id and tenant to sent data to **Edge Service**. All the assets will be persisted in a document database, in this architecture the choosen database was MongoDB
+
+## Reporting
+
 
 ## Times Series Aggregation Service
 
