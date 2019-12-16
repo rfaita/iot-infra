@@ -63,6 +63,18 @@ services:
     networks:
       - iot
 
+  nginx-service:
+    image: nginx
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    extra_hosts:
+    - "gtw-service:$DOCKERHOST"
+    ports:
+      - "80:80"
+    networks:
+      - iot
+
+
 
 networks:
     iot:

@@ -61,6 +61,15 @@ services:
     networks:
       - iot
 
+  nginx-service:
+    image: nginx
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - "80:80"
+    networks:
+      - iot
+
   edge-service:
     build: 
       context: ../iot-edge
@@ -122,10 +131,8 @@ services:
       args:
         JAR_FILE: target/app.jar
         UTIL_DIR: src/main/docker/
-    ports:
-      - "80:9081"
     environment:
-       - WAIT_FOR_IT=keycloak-service:8080
+      - WAIT_FOR_IT=keycloak-service:8080
       - JAVA_OPTS=-Xmx256m -Xms128m -Dspring.profiles.active=docker-compose
     networks:
       - iot 
