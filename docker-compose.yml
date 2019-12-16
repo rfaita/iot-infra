@@ -3,9 +3,7 @@ services:
   influxdb:
     image: influxdb
     volumes:
-    # Data persistency
-    # sudo mkdir -p /srv/docker/influxdb/data
-    - /srv/docker/influxdb/data:/var/lib/influxdb
+      - influxdb_data:/var/lib/influxdb
     networks:
       - iot
       
@@ -142,4 +140,6 @@ networks:
 
 volumes:
   postgres_data:
+      driver: local
+  influxdb_data:
       driver: local
