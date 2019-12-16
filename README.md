@@ -1,4 +1,4 @@
-# One Architecture to a IoT Ingestion / Report System
+# Architecture to a IoT Ingestion / Report System
 
 The following picture represent the main architecture of the system
 
@@ -6,7 +6,7 @@ The following picture represent the main architecture of the system
 
 ![alt BigPicture](images/iot.png)
 
-The architecture basiclly have two main areas:
+The architecture basically have two main areas:
 
 ## Ingestion
 
@@ -74,6 +74,12 @@ The following filters will be provided by API:
 
 ## Rule Service
 
+The main responsibility of this service is notify the owner of the asset when a rule was triggered. The notification can be sent with a e-mail/SMS/mobile application notification. Above some examples of rules:
+
+ - a car reached the 10000 kilometers and a new revision must be done
+ - the temperature of a sensor reached a specific value
+
+To made the notifications this service will need to integrate to various external services(SMS, e-mail)
 
 # Requirements to System
 
