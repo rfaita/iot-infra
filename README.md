@@ -1,6 +1,11 @@
 # Architecture to a IoT Ingestion / Report System
 
-The following picture represent the main architecture of the system
+With the advent of 5G technology, many devices will be connected to the Internet and could be monitored, in an attempt to reach this objective is important the definition of a robust IoT architecture.
+
+One robust architecture to IoT must explore some concepts and contain specific components, to turn the architecture extansible, high availible and scalible, because in this case, we must expected 
+a mass incoming of informations, the generation of customizable reports, the flexible of the data information and too many others aspects.
+
+Trying to reach this qualities the following archicture is proposed bellow:
 
 ## Big Picture
 
@@ -8,7 +13,7 @@ The following picture represent the main architecture of the system
 
 The architecture basically have two main areas:
 
-## Ingestion
+## 1 - Ingestion
 
 The ingestion is responsible to consume the data sent from assets(sensor, cars, iot devices in general). He use the mqtt protocol to receive data and is divided in three services:
 
@@ -53,7 +58,7 @@ InfluxDB is an open-source time series database (TSDB). It is written in Go and 
 
 This service is responsible for maintain the Assets of system(Sensors, cars, iot devices), each asset is composed of the token, id and tenant to sent data to **Edge Service**. All the assets will be persisted in a document database, in this architecture the choosen database was MongoDB
 
-## Reporting
+## 2 - Reporting
 
 Reporting will be the component responsible to show / generate information and send notification about the assets. The component have two main service:
 
@@ -61,25 +66,30 @@ Reporting will be the component responsible to show / generate information and s
 
 This service is responsible for query the data of the assets, the service can return data in the following formats:
  - **raw data**: the representation of raw data sent from the iot devices
- - **aggregated data**: the data will be returned with a criteria of aggregation(seconds, hours, days, months)
+ - **aggregated data**: Aggregates data creates aggregated summaries of numeric time series data and provides interfaces to read them. This allows applications to retrieve smaller data sets that cover a long time range with much better performance than processing all the raw time series data.
 
 The following filters will be provided by API:
 
- - from: start date to query the timeseries, format MUST be Zulu Time or using the keyword **now()**
- - to: end date to query the timeseries, format MUST be Zulu Time or using the keyword **now()** 
- - selectCriteria: criteria select to query, aggregation functions can be used(mean, man, min, etc)
- - intervalValue: group by interval value, for aggregation results
- - intervalUnit: group by interval unit, for aggregation results
+ - **from**: start date to query the timeseries, format MUST be Zulu Time or using the keyword **now()**
+ - **to**: end date to query the timeseries, format MUST be Zulu Time or using the keyword **now()** 
+ - **selectCriteria**: criteria select to query, aggregation functions can be used(mean, man, min, etc)
+ - **intervalValue**: group by interval value, for aggregation results
+ - **intervalUnit**: group by interval unit, for aggregation results
  
 
-## Rule Service
+### Rule Service
 
 The main responsibility of this service is notify the owner of the asset when a rule was triggered. The notification can be sent with a e-mail/SMS/mobile application notification. Above some examples of rules:
 
  - a car reached the 10000 kilometers and a new revision must be done
  - the temperature of a sensor reached a specific value
 
-To made the notifications this service will need to integrate to various external services(SMS, e-mail)
+A rule automatically triggers events when she detects the overshooting or undershooting of a defined threshold value. You can define the exact threshold value in the rule configuration. 
+
+
+## Considerations
+
+This architecture is only one case of how to approach the problem, many aspects could be change or override, but the concepts of one IoT system architecture, problaly will be based on this type of approach where the system will have two front: one ingestion and one report.
 
 # Requirements to System
 
