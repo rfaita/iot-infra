@@ -1,0 +1,16 @@
+#!/bin/bash
+
+docker run --rm --network=iot-infra_iot\
+    --name keycloak_exporter\
+    -v /tmp:/tmp/keycloak-export:\
+    -e DB_VENDOR=POSTGRES\
+    -e DB_ADDR=postgres-keycloak-service\
+    -e DB_DATABASE=keycloak\
+    -e DB_USER=keycloak\
+    -e DB_SCHEMA=public\
+    -e DB_PASSWORD=password\
+    jboss/keycloak\
+    -Dkeycloak.migration.action=export\
+    -Dkeycloak.migration.provider=singleFile\
+    -Dkeycloak.migration.file=/tmp/keycloak-export/keycloak_export.json\
+    -Dkeycloak.migration.realmName=iot\
