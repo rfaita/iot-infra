@@ -2,7 +2,7 @@
 
 docker run --rm --network=iot-infra_iot\
     --name keycloak_exporter\
-    -v .:/tmp/keycloak-export:\
+    -v ${PWD}:/tmp/keycloak-export:\
     -e DB_VENDOR=POSTGRES\
     -e DB_ADDR=postgres-keycloak-service\
     -e DB_DATABASE=keycloak\
