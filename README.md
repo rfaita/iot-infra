@@ -91,6 +91,15 @@ A rule automatically triggers events when she detects the overshooting or unders
 
 This architecture is only one case of how to approach the problem, many aspects could be change or override, but the concepts of one IoT system architecture, problaly will be based on this type of approach where the system will have two front: one ingestion and one report.
 
+## Projects
+
+ - [Edge Service](../iot-edge)
+ - [Time Series Persitent Service](../iot-tsp)
+ - [Time Series Aggregation Service](../iot-tsa)
+ - [Asset Service](../iot-asset)
+ - [Gateway Service](../iot-gtw)
+ - [Stream/Reactive Service](../iot-reactive)
+
 # Requirements to System
 
 You will need to have pre installed:

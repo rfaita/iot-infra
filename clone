@@ -13,4 +13,5 @@ git clone https://github.com/rfaita/iot-tsp.git
 git clone https://github.com/rfaita/iot-edge.git
 git clone https://github.com/rfaita/iot-asset.git
 git clone https://github.com/rfaita/iot-gtw.git
+git clone https://github.com/rfaita/iot-reactive.git
 git clone https://github.com/rfaita/iot-infra.git

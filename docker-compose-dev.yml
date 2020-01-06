@@ -4,6 +4,8 @@ services:
     image: influxdb
     ports:
      - "8086:8086"
+    volumes:
+      - influxdb_data:/var/lib/influxdb
     networks:
       - iot
       
@@ -81,4 +83,6 @@ networks:
 
 volumes:
   postgres_data:
+      driver: local
+  influxdb_data:
       driver: local
