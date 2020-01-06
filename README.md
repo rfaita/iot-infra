@@ -17,7 +17,7 @@ The architecture basically have two main areas:
 
 The ingestion is responsible to consume the data sent from assets(sensor, cars, iot devices in general). He use the mqtt protocol to receive data and is divided in three services:
 
-### [Edge / Ingestion service](../../iot-edge)
+### [Edge / Ingestion service](../../../iot-edge)
 
 The main responsability of this service is consume the data send to **mqtt broker** and verify whether the information is valid to send it to the **Time series persistent service**. The service use a **mqtt broker**, the incoming message will be sent in JSON, with the following example of payload:
 
@@ -40,7 +40,7 @@ The mandatory fields are:
  - timestamp: the moment when the data is collected
  - custom fields: this fields represent the data about asset, in case of this could be: speed, acceleration, voltage of battery, instant consumption, etc
 
-### Time series persistent service
+### [Time series persistent service](../../../iot-tsp)
 
 This service is reponsible about the persistance of information of incoming data from **Edge / Ingestion service**, this data will be persited in one database, the choosen database for architecture was **InfluxDB**.
 
@@ -54,7 +54,7 @@ InfluxDB is an open-source time series database (TSDB). It is written in Go and 
 4. **Fields**: Fields are the columns on which mathematical operations such as sum, mean, non-negative derivative etc can be performed. However, in recent versions string values can also be stored as a field.
 5. **Series**: A series is the most important concept of Influxdb. A series is a combination of tags, measurement, and retention policy (default of Influxdb). An Influxdb database performance is highly dependent on the number of unique series it contains, which in turn is the cardinality of tags x no. of measurement x retention policy
 
-### Asset Service
+### [Asset Service](../../../iot-asset)
 
 This service is responsible for maintain the Assets of system(Sensors, cars, iot devices), each asset is composed of the token, id and tenant to sent data to **Edge Service**. All the assets will be persisted in a document database, in this architecture the choosen database was MongoDB
 
@@ -62,7 +62,7 @@ This service is responsible for maintain the Assets of system(Sensors, cars, iot
 
 Reporting will be the component responsible to show / generate information and send notification about the assets. The component have two main service:
 
-### Time series aggregation service
+### [Time series aggregation service](../../../iot-tsa)
 
 This service is responsible for query the data of the assets, the service can return data in the following formats:
  - **raw data**: the representation of raw data sent from the iot devices
@@ -93,10 +93,6 @@ This architecture is only one case of how to approach the problem, many aspects 
 
 ## Projects
 
- - 
- - [Time Series Persitent Service](../iot-tsp)
- - [Time Series Aggregation Service](../iot-tsa)
- - [Asset Service](../iot-asset)
  - [Gateway Service](../iot-gtw)
  - [Stream/Reactive Service](../iot-reactive)
 
