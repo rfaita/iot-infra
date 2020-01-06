@@ -17,7 +17,7 @@ The architecture basically have two main areas:
 
 The ingestion is responsible to consume the data sent from assets(sensor, cars, iot devices in general). He use the mqtt protocol to receive data and is divided in three services:
 
-### Edge / Ingestion service
+### [Edge / Ingestion service](../../iot-edge)
 
 The main responsability of this service is consume the data send to **mqtt broker** and verify whether the information is valid to send it to the **Time series persistent service**. The service use a **mqtt broker**, the incoming message will be sent in JSON, with the following example of payload:
 
@@ -93,7 +93,7 @@ This architecture is only one case of how to approach the problem, many aspects 
 
 ## Projects
 
- - [Edge Service](../iot-edge)
+ - 
  - [Time Series Persitent Service](../iot-tsp)
  - [Time Series Aggregation Service](../iot-tsa)
  - [Asset Service](../iot-asset)
@@ -127,7 +127,7 @@ Now you can start you favorite IDE and edit the code
 # Runing the development environment
 
 ```sh
-$ cd ~/iot-dev/iot-infra && docker-compose -f docker-compose-dev.yml up -d --build
+$ cd ~/iot-dev/iot-infra && ./startdevmode
 ```
  
  
