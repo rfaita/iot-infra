@@ -75,7 +75,11 @@ The following filters will be provided by API:
  - **selectCriteria**: criteria select to query, aggregation functions can be used(mean, man, min, etc)
  - **intervalValue**: group by interval value, for aggregation results
  - **intervalUnit**: group by interval unit, for aggregation results
- 
+
+
+### [Stream / Reactive service](../../../iot-reactive)
+
+This service is responsible for a stream (online) the last result from IoT Devices.
 
 ### Rule Service
 
@@ -94,7 +98,6 @@ This architecture is only one case of how to approach the problem, many aspects 
 ## Projects
 
  - [Gateway Service](../iot-gtw)
- - [Stream/Reactive Service](../iot-reactive)
 
 # Requirements to System
 
