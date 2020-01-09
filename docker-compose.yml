@@ -96,6 +96,20 @@ services:
     networks:
       - iot
 
+  stream-service:
+    build: 
+      context: ../iot-reactive
+      dockerfile: src/main/docker/Dockerfile
+      args:
+        JAR_FILE: target/app.jar
+        UTIL_DIR: src/main/docker/
+        HTTP_PROXY: ${http_proxy}
+    environment:
+      - WAIT_FOR_IT=rabbitmq:5672
+      - JAVA_OPTS=-Xmx256m -Xms128m -Dspring.profiles.active=docker-compose
+    networks:
+      - iot
+
   tsa-service:
     build: 
       context: ../iot-tsa
