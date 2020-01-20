@@ -29,6 +29,7 @@ git clone https://github.com/rfaita/iot-edge.git
 git clone https://github.com/rfaita/iot-asset.git
 git clone https://github.com/rfaita/iot-gtw.git
 git clone https://github.com/rfaita/iot-infra.git
+git clone https://github.com/rfaita/iot-reactive.git
 
 
 echo "Replaces"
@@ -45,6 +46,8 @@ cd ../iot-tsp && mvn clean install
 cd ../iot-edge && mvn clean install
 cd ../iot-asset && mvn clean install
 cd ../iot-gtw && mvn clean install
+cd ../iot-reactive && mvn clean install
+
 
 cd ../iot-infra
 
