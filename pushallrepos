@@ -11,11 +11,18 @@ if [ $# != 1 ]; then
     usage
 fi
 
+echo "IOT-INFRA"
 git add --all && git commit -m "$1" && git pull && git push
+echo "IOT-TSA"
 cd ../iot-tsa && git add --all && git commit -m "$1" && git pull && git push
+echo "IOT-TSP"
 cd ../iot-tsp && git add --all && git commit -m "$1" && git pull && git push
+echo "IOT-EDGE"
 cd ../iot-edge && git add --all && git commit -m "$1" && git pull && git push
+echo "IOT-ASSET"
 cd ../iot-asset && git add --all && git commit -m "$1" && git pull && git push
+echo "IOT-GTW"
 cd ../iot-gtw && git add --all && git commit -m "$1" && git pull && git push
+echo "IOT-REACTIVE"
 cd ../iot-reactive && git add --all && git commit -m "$1" && git pull && git push
 cd ../iot-infra
