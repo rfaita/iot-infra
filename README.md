@@ -1,7 +1,5 @@
 # Architecture to a IoT Ingestion / Report System
 
-
-
 With the advent of 5G technology, many devices will be connected to the Internet and could be monitored, in an attempt to reach this objective is important the definition of a robust IoT architecture.
 
 One robust architecture to IoT must explore some concepts and contain specific components, to turn the architecture extansible, high availible and scalible, because in this case, we must expected 
