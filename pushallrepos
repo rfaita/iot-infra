@@ -18,4 +18,4 @@ cd ../iot-edge && git add --all && git commit -m "$1" && git pull && git push
 cd ../iot-asset && git add --all && git commit -m "$1" && git pull && git push
 cd ../iot-gtw && git add --all && git commit -m "$1" && git pull && git push
 cd ../iot-reactive && git add --all && git commit -m "$1" && git pull && git push
-
+cd ../iot-infra
