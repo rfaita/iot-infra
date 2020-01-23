@@ -11,11 +11,11 @@ if [ $# != 1 ]; then
     usage
 fi
 
-git add --all && git commit -m "$1" && git push
-cd iot-tsa && git add --all && git commit -m "$1" && git push
-cd ../iot-tsp && git add --all && git commit -m "$1" && git push
-cd ../iot-edge && git add --all && git commit -m "$1" && git push
-cd ../iot-asset && git add --all && git commit -m "$1" && git push
-cd ../iot-gtw && git add --all && git commit -m "$1" && git push
-cd ../iot-reactive && git add --all && git commit -m "$1" && git push
+git add --all && git commit -m "$1" && git pull && git push
+cd iot-tsa && git add --all && git commit -m "$1" && git pull && git push
+cd ../iot-tsp && git add --all && git commit -m "$1" && git pull && git push
+cd ../iot-edge && git add --all && git commit -m "$1" && git pull && git push
+cd ../iot-asset && git add --all && git commit -m "$1" && git pull && git push
+cd ../iot-gtw && git add --all && git commit -m "$1" && git pull && git push
+cd ../iot-reactive && git add --all && git commit -m "$1" && git pull && git push
 
