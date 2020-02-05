@@ -81,7 +81,7 @@ The following filters will be provided by API:
 
 This service is responsible for a stream (online) the last result from IoT Devices.
 
-### Rule Service
+### [Rule Service](../../../iot-rule)
 
 The main responsibility of this service is notify the owner of the asset when a rule was triggered. The notification can be sent with a e-mail/SMS/mobile application notification. Above some examples of rules:
 
