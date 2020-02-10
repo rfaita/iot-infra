@@ -92,9 +92,18 @@ A rule automatically triggers events when she detects the overshooting or unders
 
 ## 3 - Embedded system
 
-### [Embedded service](../../../iot-embedded)
+Embedded system is responsible for components to send information from IoT devices, each component here is responsible for a environment.
 
-....
+### [Embedded service - Arduino](../../../iot-embedded)
+
+The embedded system is responsible to connect to a MQTT broker and send the JSON with the following information:
+ - temperature
+ - pressure
+ - humidity
+ 
+The initial implementation only connect using WiFi connections, but in the future will be changed to use EDGE(2G) connections.
+
+After sent information to MQTT broker the embedded system put the device on a sleep time.
 
 ## Considerations
 
