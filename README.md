@@ -90,6 +90,11 @@ The main responsibility of this service is notify the owner of the asset when a 
 
 A rule automatically triggers events when she detects the overshooting or undershooting of a defined threshold value. You can define the exact threshold value in the rule configuration. 
 
+## 3 - Embedded system
+
+### [Embedded service](../../../iot-embedded)
+
+....
 
 ## Considerations
 
