@@ -13,6 +13,11 @@ services:
     networks:
       - iot
 
+  redis:
+    image: redis
+    networks:
+      - iot
+
   rabbitmq:
     image: rabbitmq:management
     networks:
@@ -137,6 +142,20 @@ services:
       - JAVA_OPTS=-Xmx256m -Xms128m -Dspring.profiles.active=docker-compose
     networks:
       - iot
+
+  rule-service:
+    build: 
+      context: ../iot-rule
+      dockerfile: src/main/docker/Dockerfile
+      args:
+        JAR_FILE: target/app.jar
+        UTIL_DIR: src/main/docker/
+        HTTP_PROXY: ${http_proxy}
+    environment:
+      - WAIT_FOR_IT=mongodb:27017 redis:6379
+      - JAVA_OPTS=-Xmx256m -Xms128m -Dspring.profiles.active=docker-compose
+    networks:
+      - iot 
 
   gtw-service:
     build: 
