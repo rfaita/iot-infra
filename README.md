@@ -6,8 +6,8 @@ All the documentation of the project are on medium on this [link](https://medium
 
  - [Edge Service](https://github.com/rfaita/iot-edge)
  - [Asset Service](https://github.com/rfaita/iot-asset)
- - [Time Series Persistent Service](https://github.com/rfaita/tsp)
- - [Time Series Aggregation Service](https://github.com/rfaita/tsa)
+ - [Time Series Persistent Service](https://github.com/rfaita/iot-tsp)
+ - [Time Series Aggregation Service](https://github.com/rfaita/iot-tsa)
  - [Rule Service](https://github.com/rfaita/iot-rule)
  - [Time Series Stream Service](https://github.com/rfaita/iot-reactive)
  - [Gateway Service](https://github.com/rfaita/iot-gtw)
