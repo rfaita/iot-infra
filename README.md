@@ -2,6 +2,18 @@
 
 All the documentation of the project are on medium on this [link](https://medium.com/@rafaelfaita/a-simple-iot-architecture-to-ingestion-and-reporting-babc8985e25e).
 
+# Project List
+
+ - [Edge Service](https://github.com/rfaita/iot-edge)
+ - [Asset Service](https://github.com/rfaita/iot-asset)
+ - [Time Series Persistent Service](https://github.com/rfaita/tsp)
+ - [Time Series Aggregation Service](https://github.com/rfaita/tsa)
+ - [Rule Service](https://github.com/rfaita/iot-rule)
+ - [Time Series Stream Service](https://github.com/rfaita/iot-reactive)
+ - [Gateway Service](https://github.com/rfaita/iot-gtw)
+ - [Embedded System](https://github.com/rfaita/iot-embedded)
+ 
+
 # Requirements to System
 
 You will need to have pre installed:
